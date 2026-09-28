@@ -53,9 +53,13 @@
         .then((data) => {
             console.log(data);
 
-            document.getElementById("lokasi").innerHTML = data.kota;
-            document.getElementById("negara").innerHTML = 
-                data.koordinasi;
+            document.getElementById("kota").innerHTML = data.kota; 
+            document.getElementById("negara").innerHTML = data.negara; 
+            document.getElementById("provinsi").innerHTML = data.provinsi; 
+            document.getElementById("kecamatan").innerHTML = data.kecamatan; 
+            document.getElementById("suhu").innerHTML = data.suhu; 
+            document.getElementById("longitude").innerHTML = data.longitude; 
+            document.getElementById("latitude").innerHTML = data.latitude;
         })
 
         .catch((error) => {
