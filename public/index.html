@@ -6,7 +6,86 @@
     <title>Geolocation</title>
 </head>
 
-<body>
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        background: #eaf6ff; 
+        margin: 0; 
+        padding: 30px; }
+    
+    .container { 
+        width: 500px; 
+        margin: auto; 
+        background: white; 
+        padding: 25px; 
+        border-radius: 15px; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); } 
+    
+    h2 { 
+        text-align: center; 
+        margin-bottom: 25px; } 
+    
+    .input-area { 
+        display: flex; 
+        gap: 10px; 
+        margin-bottom: 20px; }
+
+    .input-area input { 
+        flex: 1; 
+        padding: 10px; 
+        border: 1px solid #ccc; 
+        border-radius: 8px; } 
+        
+    .input-area button { 
+        padding: 10px 18px; 
+        border: none; 
+        border-radius: 8px; 
+        background: #2196f3; 
+        color: white; 
+        cursor: pointer; } 
+        
+    .input-area button:hover { 
+        background: #1976d2; } 
+        
+    .weather-box { 
+        display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; } 
+    
+    .item { 
+        background: #f5faff; 
+        padding: 15px; 
+        border-radius: 10px; 
+        border-left: 4px solid #2196f3; } 
+    
+    .item p { 
+        margin: 5px 0; } 
+        
+    .label { 
+        font-size: 13px; 
+        color: #777; } 
+    
+    .value { 
+        font-size: 17px; 
+        font-weight: bold; } 
+    
+    .temperature { 
+        grid-column: span 2; 
+        text-align: center; 
+        background: #dff1ff; 
+        padding: 20px; 
+        border-radius: 12px; } 
+    
+    .temperature .value { 
+        font-size: 32px; 
+        color: #2196f3; } 
+        
+        </style> 
+    </head> 
+
+    <body> 
+        <div class="container">
+
     <h3> Nama : Erlina Shafira Indriani</h3>
     <h3> NIM : 20240140121</h3>
 
