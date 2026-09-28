@@ -8,24 +8,65 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/api/lokasi", async (req, res) => {
-    const kota = "jakarta";
+    const kota = req.query.lokasi;
 
-    const apiKey = "TmW3n2IbOKaZxkghOoYB";
+    if (!kota) { 
+        return res.status(400).json({ 
+            message: "Lokasi belum diisi" 
+        }); 
+    }
 
-    const url = `https://api.maptiler.com/geocoding/${kota}.json?key=${apiKey}`;
+    const apiKey = "TmW3n2IbOKaZxghOoYB";
+
 
     try {
+        const url = `https://api.maptiler.com/geocoding/${kota}.json?key=${apiKey}`;
+
         const response = await axios.get(url);
 
         const data = response.data;
 
-        const lokasi = data.features[0].matching_text;
-        const koordinat = data.features[0].geometry.coordinates;
+        const feature = data.features[0];
 
-        res.json({
-            kota: lokasi,
-            koordinat : koordinat
-        });
+        const koordinat = feature.geometry.coordinates; 
+        const longitude = koordinat[0]; 
+        const latitude = koordinat[1];
+
+       let negara = "-"; 
+       let provinsi = "-"; 
+       let kecamatan = "-";
+
+       if (feature.context) { 
+        feature.context.forEach((item) => { 
+            
+            if (
+                item.id.startsWith("country")) { 
+                negara = item.text; } 
+                
+            if (
+                item.id.startsWith("region")) { 
+                provinsi = item.text; } 
+                
+            if ( 
+                item.id.startsWith("county") || 
+                item.id.startsWith("municipality") || 
+                item.id.startsWith("locality") ) { 
+                kecamatan = item.text; 
+            } 
+        }); 
+    } 
+    const lokasi = feature.text || feature.matching_text || kota; 
+    
+    const weatherUrl = 
+        `https://api.open-meteo.com/v1/forecast` + 
+        `?latitude=${latitude}` + `&longitude=${longitude}` + 
+        `&current=temperature_2m` + 
+        `&timezone=auto`; 
+    
+    const weatherResponse = await axios.get(weatherUrl); 
+    const suhu = weatherResponse.data.current.temperature_2m; 
+    
+    res.json({ kota: lokasi, negara: negara, provinsi: provinsi, kecamatan: kecamatan, suhu: suhu, longitude: longitude, latitude: latitude });
 
     }catch (error) {
         console.error(error.message);

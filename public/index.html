@@ -100,43 +100,43 @@
         <button onclick="cariLokasi()">Cari</button> 
     </div>
     
-    <p>
-        Kota :
-        <span id="kota"></span>
-    </p>
-
-    <p>
-        Negara :
-        <span id="negara"></span>
-    </p>
-
-    <p>
-        Provinsi :
-        <span id="provinsi"></span>
-    </p>
-
-    <p>
-        Kecamatan :
-        <span id="kecamatan"></span>
-    </p>
-
-    <p>
-        Suhu :
-        <span id="suhu"></span>
-    </p>
-
-    <p>
-        Longitude :
-        <span id="longitude"></span>
-    </p>
-
-    <p>
-        Latitude :
-        <span id="latitude"></span>
-    </p>
-
-    <hr>
-
+   <div class="weather-box"> 
+    <div class="item"> 
+        <p class="label">Negara</p> 
+        <p class="value" id="negara">-</p> 
+    </div> 
+    
+    <div class="item"> 
+        <p class="label">Provinsi</p> 
+        <p class="value" id="provinsi">-</p> 
+    </div> 
+    
+    <div class="item"> 
+        <p class="label">Kecamatan</p> 
+        <p class="value" id="kecamatan">-</p> 
+    </div> 
+    
+    <div class="item"> 
+        <p class="label">Lokasi</p> 
+        <p class="value" id="kota">-</p> 
+    </div> 
+    
+    <div class="temperature"> 
+        <p class="label">Suhu</p> 
+        <p class="value"> 
+            <span id="suhu">-</span> °C </p> 
+        </div> 
+        
+    <div class="item"> 
+        <p class="label">Longitude</p> 
+        <p class="value" id="longitude">-</p> 
+    </div> 
+    
+    <div class="item"> 
+        <p class="label">Latitude</p> 
+        <p class="value" id="latitude">-</p> 
+    </div>
+  
     <script>
         fetch("/api/lokasi")
         .then((response) => response.json())
