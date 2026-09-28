@@ -16,7 +16,7 @@ app.get("/api/lokasi", async (req, res) => {
         }); 
     }
 
-    const apiKey = "TmW3n2IbOKaZxghOoYB";
+    const apiKey = "cRkl5t2DsNBOxmBtMgNL";
 
 
     try {
@@ -27,6 +27,12 @@ app.get("/api/lokasi", async (req, res) => {
         const data = response.data;
 
         const feature = data.features[0];
+
+        console.log("HASIL FEATURE:");
+        console.log(feature);
+
+        console.log("CONTEXT:");
+        console.log(feature.context);
 
         const koordinat = feature.geometry.coordinates; 
         const longitude = koordinat[0]; 
@@ -47,12 +53,15 @@ app.get("/api/lokasi", async (req, res) => {
                 item.id.startsWith("region")) { 
                 provinsi = item.text; } 
                 
-            if ( 
-                item.id.startsWith("county") || 
-                item.id.startsWith("municipality") || 
-                item.id.startsWith("locality") ) { 
-                kecamatan = item.text; 
-            } 
+            if (
+        item.id.startsWith("county") ||
+        item.id.startsWith("municipality") ||
+        item.id.startsWith("locality") ||
+        item.id.startsWith("district") ||
+        item.id.startsWith("suburb")
+    ) {
+        kecamatan = item.text;
+    }
         }); 
     } 
     const lokasi = feature.text || feature.matching_text || kota; 
