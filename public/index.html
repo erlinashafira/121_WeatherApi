@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+</head>
+
+<body>
+    <h3> Nama : Erlina Shafira Indriani</h3>
+    <h3> NIM : 20240140121</h3>
+
+    <p>
+        Kota :
+        <span id="kota"></span>
+    </p>
+
+    <p>
+        Negara :
+        <span id="negara"></span>
+    </p>
+
+    <p>
+        Provinsi :
+        <span id="provinsi"></span>
+    </p>
+
+    <p>
+        Kecamatan :
+        <span id="kecamatan"></span>
+    </p>
+
+    <p>
+        Suhu :
+        <span id="suhu"></span>
+    </p>
+
+    <p>
+        Longitude :
+        <span id="longitude"></span>
+    </p>
+
+    <p>
+        Latitude :
+        <span id="latitude"></span>
+    </p>
+
+    <hr>
+
+    <script>
+        fetch("/api/lokasi")
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+
+            document.getElementById("lokasi").innerHTML = data.kota;
+            document.getElementById("negara").innerHTML = 
+                data.koordinasi;
+        })
+
+        .catch((error) => {
+
+            console.error("Error:");
+
+        });
+        
+    </script>
+
+</body>
+</html>
